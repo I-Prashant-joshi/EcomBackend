@@ -23,18 +23,22 @@ app.use('/api/Auth',AuthFile);
 app.use('/api/product',ProductFile);
 app.use('/api/new',stripe);
 app.post('/api/mail',sendMail);
+mongoose.connect(process.env.ConUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB Connected Successfully"))
+  .catch(err => console.error("MongoDB Connection Error:", err));
 
-
-mongoose.connect(process.env.ConUrl)
-.then(()=>console.log("connection Successful"))
-.catch((err)=>console.log(err));
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT,()=>{
 console.log("server is properly working")
 });
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
   });
+  
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
 
 
 
