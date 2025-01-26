@@ -32,7 +32,9 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
 console.log("server is properly working")
 });
-
+app.get('/', (req, res) => {
+    res.send('Server is up and running!');
+  });
 
 
 
