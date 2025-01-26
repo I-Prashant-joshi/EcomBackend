@@ -13,12 +13,16 @@ const stripe=require('./Routes/stripe');
 const sendMail=require('./Routes/mailer')
 app.use(cors());
 app.use(express.json());
+app.use(cors({
+    origin: "*", 
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+}));
 
 app.use('/api/User',UserFile);
 app.use('/api/Auth',AuthFile);
 app.use('/api/product',ProductFile);
 app.use('/api/new',stripe);
-
 app.post('/api/mail',sendMail);
 
 
