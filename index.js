@@ -11,7 +11,6 @@ const ProductFile=require('./Routes/Product');
 const AuthFile=require('./Routes/auth');
 const stripe=require('./Routes/stripe');
 const sendMail=require('./Routes/mailer')
-app.use(cors());
 app.use(express.json());
 app.use(cors({
     origin: "*", 
@@ -29,8 +28,8 @@ app.post('/api/mail',sendMail);
 mongoose.connect(process.env.ConUrl)
 .then(()=>console.log("connection Successful"))
 .catch((err)=>console.log(err));
-
-app.listen(5000,()=>{
+const PORT = process.env.PORT || 5000;
+app.listen(PORT,()=>{
 console.log("server is properly working")
 });
 
